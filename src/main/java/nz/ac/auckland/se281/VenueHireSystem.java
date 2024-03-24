@@ -33,35 +33,47 @@ public class VenueHireSystem {
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     // TODO implement this method
     // Check for venueName is empty or not
-    if (venueName.isEmpty()) {
+    boolean flag = true;
+    if (venueName == null
+        || venueName.trim().isEmpty()
+        || venueName.isBlank()
+        || venueName.charAt(0) == ' ') {
+      flag = false;
       MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
     }
     // Check if this venueCode is unique throughout the system
     if (venueArrayCode.size() >= 1) {
       if (venueArrayCode.contains(venueCode)) {
+        flag = false;
         int pos = venueCode.indexOf(venueCode);
         MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venueArrayName.get(pos));
       }
     }
     // Check if capacityInput is valid or not
-    if (Integer.valueOf(capacityInput) <= 0) {
+    if (Integer.valueOf(capacityInput) < 0) {
+      flag = false;
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "positive");
     } else if (capacityInput.contains(".")) {
+      flag = false;
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "whole");
     }
 
     // Check if venueFees is valid or not
     if (Integer.valueOf(hireFeeInput) <= 0) {
+      flag = false;
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "positive");
     } else if (capacityInput.contains(".")) {
+      flag = false;
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "number");
     }
 
-    MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
-    venueArrayName.add(venueName);
-    venueArrayCode.add(venueCode);
-    venueArrayCap.add(capacityInput);
-    venueArrayFee.add(hireFeeInput);
+    if (flag == true){
+      MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+      venueArrayName.add(venueName);
+      venueArrayCode.add(venueCode);
+      venueArrayCap.add(capacityInput);
+      venueArrayFee.add(hireFeeInput);
+    }
   }
 
   public void setSystemDate(String dateInput) {
