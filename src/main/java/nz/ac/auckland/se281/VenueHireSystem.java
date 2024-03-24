@@ -73,15 +73,14 @@ public class VenueHireSystem {
     // Check if venueFees is valid or not
     if (!hireFeeInput.matches(".*\\d+.*")) {
       flag = false;
-      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee","");
-    }
-    else if (Integer.valueOf(hireFeeInput) <= 0) {
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
+    } else if (Integer.valueOf(hireFeeInput) <= 0) {
       flag = false;
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
     } else if (hireFeeInput.contains(".")) {
       flag = false;
-      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee","");
-    } 
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
+    }
 
     if (flag == true) {
       MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
