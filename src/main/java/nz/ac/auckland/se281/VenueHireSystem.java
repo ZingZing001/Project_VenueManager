@@ -46,10 +46,22 @@ public class VenueHireSystem {
     // Check if capacityInput is valid or not
     if (Integer.valueOf(capacityInput) <= 0) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "positive");
-    }
-    else if(capacityInput.contains(".")){
+    } else if (capacityInput.contains(".")) {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "whole");
     }
+
+    // Check if venueFees is valid or not
+    if (Integer.valueOf(hireFeeInput) <= 0) {
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "positive");
+    } else if (capacityInput.contains(".")) {
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "number");
+    }
+
+    MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
+    venueArrayName.add(venueName);
+    venueArrayCode.add(venueCode);
+    venueArrayCap.add(capacityInput);
+    venueArrayFee.add(hireFeeInput);
   }
 
   public void setSystemDate(String dateInput) {
