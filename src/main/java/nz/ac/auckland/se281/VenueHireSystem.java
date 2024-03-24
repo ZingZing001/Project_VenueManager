@@ -14,8 +14,10 @@ public class VenueHireSystem {
 
   public void printVenues() {
     // TODO implement this method
+    // Check if theres any venue allready existed
     if (venueArrayName.isEmpty()) {
       MessageCli.NO_VENUES.printMessage();
+      // Print all the venues out
     } else {
       for (int i = 0; i < venueArrayName.size(); i++) {
         MessageCli.VENUE_ENTRY.printMessage(
@@ -41,7 +43,13 @@ public class VenueHireSystem {
         MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venueArrayName.get(pos));
       }
     }
-    //
+    // Check if capacityInput is valid or not
+    if (Integer.valueOf(capacityInput) <= 0) {
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "positive");
+    }
+    else if(capacityInput.contains(".")){
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "whole");
+    }
   }
 
   public void setSystemDate(String dateInput) {
