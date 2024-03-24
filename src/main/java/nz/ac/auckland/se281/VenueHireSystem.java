@@ -19,12 +19,24 @@ public class VenueHireSystem {
       MessageCli.NO_VENUES.printMessage();
       // Print all the venues out
     } else {
-      for (int i = 0; i < venueArrayName.size(); i++) {
-        MessageCli.VENUE_ENTRY.printMessage(
-            venueArrayName.get(i),
-            venueArrayCode.get(i),
-            venueArrayCap.get(i),
-            venueArrayFee.get(i));
+      if (venueArrayName.size() == 1) {
+        MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
+        for (int i = 0; i < venueArrayName.size(); i++) {
+          MessageCli.VENUE_ENTRY.printMessage(
+              venueArrayName.get(i),
+              venueArrayCode.get(i),
+              venueArrayCap.get(i),
+              venueArrayFee.get(i));
+        }
+      } else {
+        MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(venueArrayName.size()), "s");
+        for (int i = 0; i < venueArrayName.size(); i++) {
+          MessageCli.VENUE_ENTRY.printMessage(
+              venueArrayName.get(i),
+              venueArrayCode.get(i),
+              venueArrayCap.get(i),
+              venueArrayFee.get(i));
+        }
       }
     }
   }
