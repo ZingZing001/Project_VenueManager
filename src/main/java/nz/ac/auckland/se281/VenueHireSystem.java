@@ -5,13 +5,12 @@ import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
+  ArrayList<String> venueArray = new ArrayList<String>();
 
   public VenueHireSystem() {}
 
   public void printVenues() {
     // TODO implement this method
-    ArrayList<String> venueArray = new ArrayList<String>();
-
     if (venueArray.size() <= 0) {
       MessageCli.NO_VENUES.printMessage();
     } else {
@@ -22,6 +21,7 @@ public class VenueHireSystem {
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     // TODO implement this method
+    venueArray.add(venueName);
   }
 
   public void setSystemDate(String dateInput) {
