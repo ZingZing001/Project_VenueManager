@@ -14,6 +14,8 @@ public class VenueHireSystem {
 
     if (venueArray.size() <= 0) {
       MessageCli.NO_VENUES.printMessage();
+    } else {
+      System.out.println(venueArray);
     }
   }
 
