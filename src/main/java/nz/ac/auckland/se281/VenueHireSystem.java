@@ -14,10 +14,16 @@ public class VenueHireSystem {
 
   public void printVenues() {
     // TODO implement this method
-    if (venueArrayName.size() <= 0) {
+    if (venueArrayName.isEmpty()) {
       MessageCli.NO_VENUES.printMessage();
     } else {
-      System.out.println(venueArrayName);
+      for (int i = 0; i < venueArrayName.size(); i++) {
+        MessageCli.VENUE_ENTRY.printMessage(
+            venueArrayName.get(i),
+            venueArrayCode.get(i),
+            venueArrayCap.get(i),
+            venueArrayFee.get(i));
+      }
     }
   }
 
