@@ -50,12 +50,12 @@ public class VenueHireSystem {
       }
     }
     // Check if capacityInput is valid or not
-    if (Integer.valueOf(capacityInput) < 0) {
+    if (Integer.valueOf(capacityInput) <= 0) {
       flag = false;
-      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "positive");
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
     } else if (capacityInput.contains(".")) {
       flag = false;
-      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "whole");
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " whole");
     }
 
     // Check if venueFees is valid or not
@@ -67,7 +67,7 @@ public class VenueHireSystem {
       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("Capacity", "number");
     }
 
-    if (flag == true){
+    if (flag == true) {
       MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
       venueArrayName.add(venueName);
       venueArrayCode.add(venueCode);
