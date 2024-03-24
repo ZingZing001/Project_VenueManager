@@ -5,23 +5,37 @@ import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
-  ArrayList<String> venueArray = new ArrayList<String>();
+  ArrayList<String> venueArrayName = new ArrayList<String>();
+  ArrayList<String> venueArrayCode = new ArrayList<String>();
+  ArrayList<String> venueArrayCap = new ArrayList<String>();
+  ArrayList<String> venueArrayFee = new ArrayList<String>();
 
   public VenueHireSystem() {}
 
   public void printVenues() {
     // TODO implement this method
-    if (venueArray.size() <= 0) {
+    if (venueArrayName.size() <= 0) {
       MessageCli.NO_VENUES.printMessage();
     } else {
-      System.out.println(venueArray);
+      System.out.println(venueArrayName);
     }
   }
 
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     // TODO implement this method
-    venueArray.add(venueName);
+    // Check for venueName is empty or not
+    if (venueName.isEmpty()) {
+      MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
+    }
+    // Check if this venueCode is unique throughout the system
+    if (venueArrayCode.size() >= 1) {
+      if (venueArrayCode.contains(venueCode)) {
+        int pos = venueCode.indexOf(venueCode);
+        MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venueArrayName.get(pos));
+      }
+    }
+    //
   }
 
   public void setSystemDate(String dateInput) {
