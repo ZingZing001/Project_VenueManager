@@ -709,9 +709,145 @@ public class MainTest {
     }
 
     @Test
-    public void T4_01_add_your_own_tests_as_needed() throws Exception {
-      runCommands(CREATE_VENUE, "'TESTVENUE'", "TV", "ASTRING", "150");
+    public void T1_HD_invalid_capacity_not_number() throws Exception {
+      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "twenty", "150");
+
       assertContains("Venue not created: capacity must be a number.");
+      assertDoesNotContain("Successfully created venue", true);
+    }
+
+    @Test
+    public void T1_HD_invalid_base_hire_fee_negative() throws Exception {
+      runCommands(CREATE_VENUE, "'Frugal Fiesta Hall'", "FFH", "80", "-150");
+
+      assertContains("Venue not created: hire fee must be a positive number.");
+      assertDoesNotContain("Successfully created venue", true);
+    }
+
+    @Test
+    public void T1_HD_first_venue_saved() throws Exception {
+      runCommands(
+          CREATE_VENUE,
+          "'Frugal Fiesta Hall'",
+          "FFH",
+          "80",
+          "150", //
+          PRINT_VENUES);
+
+      assertContains("There is one venue in the system:");
+      assertContains("Successfully created venue 'Frugal Fiesta Hall' (FFH).");
+      assertContains("* Frugal Fiesta Hall (FFH) - 80 people - $150 base hire fee");
+    }
+    @Test
+    public void T1_HD_second_venue_saved() throws Exception {
+      runCommands(
+          CREATE_VENUE,
+          "'Frugal Fiesta Hall'",
+          "FFH",
+          "80",
+          "150", //
+          CREATE_VENUE,
+          "'Comfy Corner Events Centre'",
+          "CCEC",
+          "120",
+          "250", //
+          PRINT_VENUES);
+
+      assertContains("Successfully created venue 'Frugal Fiesta Hall' (FFH).");
+      assertContains("Successfully created venue 'Comfy Corner Events Centre' (CCEC).");
+      assertContains("There are two venues in the system:");
+      assertContains("Frugal Fiesta Hall (FFH) - 80 people - $150 base hire fee");
+      assertContains("Comfy Corner Events Centre (CCEC) - 120 people - $250 base hire fee");
+    }
+    @Test
+    public void T1_HD_nine_venues_saved() throws Exception {
+      runCommands(unpack(CREATE_NINE_VENUES, PRINT_VENUES));
+
+      assertContains("Successfully created venue 'Frugal Fiesta Hall' (FFH).");
+      assertContains("Successfully created venue 'Comfy Corner Events Centre' (CCEC).");
+      assertContains("Successfully created venue 'Cozy Comforts Venue' (CCV).");
+      assertContains("Successfully created venue 'Charming Charm Hall' (CCH).");
+      assertContains("Successfully created venue 'Refined Radiance Venue' (RRV).");
+      assertContains("Successfully created venue 'Classy Celebration Venue' (TGB).");
+      assertContains("Successfully created venue 'Grand Gala Gardens' (GGG).");
+      assertContains("Successfully created venue 'Exclusive Elegance Venue' (EEV).");
+      assertContains("Successfully created venue 'Luxurious Legacy Hall' (LLH).");
+
+      assertContains("There are nine venues in the system:");
+      assertContains("Frugal Fiesta Hall (FFH) - 80 people - $250 base hire fee");
+      assertContains("Comfy Corner Events Centre (CCEC) - 120 people - $500 base hire fee");
+      assertContains("Cozy Comforts Venue (CCV) - 200 people - $500 base hire fee");
+      assertContains("Charming Charm Hall (CCH) - 220 people - $500 base hire fee");
+      assertContains("Refined Radiance Venue (RRV) - 200 people - $500 base hire fee");
+      assertContains("Classy Celebration Venue (TGB) - 150 people - $1000 base hire fee");
+      assertContains("Grand Gala Gardens (GGG) - 260 people - $1500 base hire fee");
+      assertContains("Exclusive Elegance Venue (EEV) - 350 people - $1500 base hire fee");
+      assertContains("Luxurious Legacy Hall (LLH) - 800 people - $2500 base hire fee");
+
+      assertDoesNotContain("There is", true);
+      assertDoesNotContain("9 venues", true);
+    }
+    @Test
+    public void T1_HD_reject_duplicate_venue_different_name() throws Exception {
+      runCommands(
+          CREATE_VENUE,
+          "'Frugal Fiesta Hall'",
+          "FFH",
+          "80",
+          "150", //
+          CREATE_VENUE,
+          "'Finest Fantasy Heights'",
+          "FFH",
+          "150",
+          "2500", //
+          PRINT_VENUES);
+
+      assertContains("Successfully created venue 'Frugal Fiesta Hall' (FFH).");
+      assertContains("There is one venue in the system:");
+      assertContains("* Frugal Fiesta Hall (FFH) - 80 people - $150 base hire fee");
+
+      assertContains("Venue not created: code 'FFH' is already used for 'Frugal Fiesta Hall'.");
+
+      assertDoesNotContain("Successfully created venue 'Finest Fantasy Heights' (FFH).", true);
+      assertDoesNotContain(
+          "* Finest Fantasy Heights (FFH) - 150 people - $2500 base hire fee", true);
+      assertDoesNotContain("two venue", true);
+      assertDoesNotContain("2 venue", true);
+    }
+    @Test
+    public void T1_HD_add_second_after_reject_duplicate() throws Exception {
+      runCommands(
+          CREATE_VENUE,
+          "'Frugal Fiesta Hall'",
+          "FFH",
+          "80",
+          "150", //
+          CREATE_VENUE,
+          "'Finest Fantasy Heights'",
+          "FFH",
+          "150",
+          "2500", //
+          CREATE_VENUE,
+          "'Comfy Corner Events Centre'",
+          "CCEC",
+          "120",
+          "250", //
+          PRINT_VENUES);
+
+      assertContains("Successfully created venue 'Frugal Fiesta Hall' (FFH).");
+      assertContains("Successfully created venue 'Comfy Corner Events Centre' (CCEC).");
+
+      assertContains("There are two venues in the system:");
+      assertContains("* Frugal Fiesta Hall (FFH) - 80 people - $150 base hire fee");
+      assertContains("* Comfy Corner Events Centre (CCEC) - 120 people - $250 base hire fee");
+
+      assertDoesNotContain(
+          "* Finest Fantasy Heights (FFH) - 150 people - $2500 base hire fee", true);
+
+      assertDoesNotContain("one venue", true);
+      assertDoesNotContain("1 venue", true);
+      assertDoesNotContain("three venue", true);
+      assertDoesNotContain("3 venue", true);
     }
   }
 
