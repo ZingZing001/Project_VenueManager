@@ -13,6 +13,9 @@ public class VenueHireSystem {
   public VenueHireSystem() {}
 
   public void printVenues() {
+    String[] strArr = {
+      "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+    };
     // TODO implement this method
     // Check if theres any venue allready existed
     if (venueArrayName.isEmpty()) {
@@ -20,7 +23,16 @@ public class VenueHireSystem {
       // Print all the venues out
     } else {
       if (venueArrayName.size() == 1) {
-        MessageCli.NUMBER_VENUES.printMessage("is", "one", "");
+        MessageCli.NUMBER_VENUES.printMessage("is", strArr[1], "");
+        for (int i = 0; i < venueArrayName.size(); i++) {
+          MessageCli.VENUE_ENTRY.printMessage(
+              venueArrayName.get(i),
+              venueArrayCode.get(i),
+              venueArrayCap.get(i),
+              venueArrayFee.get(i));
+        }
+      } else if (venueArrayName.size() > 1 && venueArrayName.size() < 10) {
+        MessageCli.NUMBER_VENUES.printMessage("are", strArr[venueArrayName.size()], "s");
         for (int i = 0; i < venueArrayName.size(); i++) {
           MessageCli.VENUE_ENTRY.printMessage(
               venueArrayName.get(i),
