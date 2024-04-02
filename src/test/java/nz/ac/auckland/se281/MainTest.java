@@ -711,7 +711,7 @@ public class MainTest {
     @Test
     public void T4_01_add_your_own_tests_as_needed() throws Exception {
       runCommands(CREATE_VENUE, "'TESTVENUE'", "TV", "ASTRING", "150");
-      assertContains("Venue not created: Capacity must be a number.");
+      assertContains("Venue not created: capacity must be a number.");
     }
   }
 
