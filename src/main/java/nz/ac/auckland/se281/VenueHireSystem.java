@@ -6,9 +6,10 @@ import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
   ArrayList<String> venueArrayName = new ArrayList<String>();
-  ArrayList<String> venueArrayCode = new ArrayList<String>();
-  ArrayList<String> venueArrayCap = new ArrayList<String>();
-  ArrayList<String> venueArrayFee = new ArrayList<String>();
+
+  // ArrayList<String> venueArrayCode = new ArrayList<String>();
+  // ArrayList<String> venueArrayCap = new ArrayList<String>();
+  // ArrayList<String> venueArrayFee = new ArrayList<String>();
 
   public VenueHireSystem() {}
 
