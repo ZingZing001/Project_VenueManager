@@ -13,4 +13,16 @@ public class SystemDate {
     this.setDate = setDate;
     currentDate = null;
   }
+
+  public void setCurrentDate(String setDate) {
+    currentDate = setDate;
+  }
+
+  public String getCurrentDate() {
+    if (currentDate == null) {
+      return null;
+    } else {
+      return currentDate;
+    }
+  }
 }
