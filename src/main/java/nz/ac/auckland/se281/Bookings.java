@@ -17,7 +17,7 @@ public class Bookings {
     return venueCode;
   }
 
-  public String getCurrentDate() {
+  public String getDateBooked() {
     return currentDate;
   }
 

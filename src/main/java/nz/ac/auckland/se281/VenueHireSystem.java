@@ -245,11 +245,17 @@ public class VenueHireSystem {
       if (yearI > yearC || monthI > monthC || dayI > dayC) {
         MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options);
       }
-    }else if(){
-      MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
+    } else if (bookings.size() >= 1) {
+      for (int i = 0; i < bookings.size(); i++) {
+        if (bookings.get(i).getDateBooked().equals(options[1])
+            && !bookings.get(i).getVenueCode().equals(options[0])) {
+          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
+        } else if (bookings.get(i).getDateBooked().equals(options[1])
+            && bookings.get(i).getVenueCode().equals(options[0])) {
+          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
+        }
+      }
     }
-
-
   }
 
   public void printBookings(String venueCode) {
