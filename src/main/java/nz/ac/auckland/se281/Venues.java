@@ -1,31 +1,31 @@
 package nz.ac.auckland.se281;
 
 public class Venues {
-  private String fullName;
-  private String alias;
-  private String maxAmmount;
-  private String hiringFee;
+  private String venueName;
+  private String venueCode;
+  private String capacityInput;
+  private String hireFeeInput;
 
-  public Venues(String fullName, String alias, String maxAmmount, String hiringFee) {
-    this.fullName = fullName;
-    this.alias = alias;
-    this.maxAmmount = maxAmmount;
-    this.hiringFee = hiringFee;
+  public Venues(String venueName, String venueCode, String capacityInput, String hireFeeInput) {
+    this.venueName = venueName;
+    this.venueCode = venueCode;
+    this.capacityInput = capacityInput;
+    this.hireFeeInput = hireFeeInput;
   }
 
   public String getVenueName() {
-    return fullName;
+    return venueName;
   }
 
   public String getAlias() {
-    return alias;
+    return venueCode;
   }
 
   public String getCapacity() {
-    return maxAmmount;
+    return capacityInput;
   }
 
   public String getFees() {
-    return hiringFee;
+    return hireFeeInput;
   }
 }
