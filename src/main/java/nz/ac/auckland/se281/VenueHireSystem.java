@@ -222,6 +222,12 @@ public class VenueHireSystem {
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage(options);
     } else if (allVenues.isEmpty()) {
       MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage(options);
+    } else if (!allVenues.isEmpty()) {
+      for (int i = 0; i < allVenues.size(); i++) {
+        if (allVenues.get(i).getAlias().equals(options[0])) {
+          MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options);
+        }
+      }
     }
   }
 
