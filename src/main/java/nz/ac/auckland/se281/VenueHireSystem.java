@@ -95,7 +95,6 @@ public class VenueHireSystem {
 
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
-    // TODO implement this method
     boolean flag = true;
     if (venueName == null
         || venueName.trim().isEmpty()
@@ -255,6 +254,16 @@ public class VenueHireSystem {
           MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
         }
       }
+    } else if (Integer.parseInt(options[3])
+        < 0.25 * Integer.parseInt(allVenues.get(allVenues.indexOf(options[0])).getCapacity())) {
+      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
+          options[0],
+          "" + 0.25 * Integer.parseInt(allVenues.get(allVenues.indexOf(options[0])).getCapacity()));
+    } else if (Integer.parseInt(options[3])
+        > Integer.parseInt(allVenues.get(allVenues.indexOf(options[0])).getCapacity())) {
+      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
+          options[0],
+          "" + Integer.parseInt(allVenues.get(allVenues.indexOf(options[0])).getCapacity()));
     }
   }
 
