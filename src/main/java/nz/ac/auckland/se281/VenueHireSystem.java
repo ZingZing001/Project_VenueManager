@@ -220,13 +220,13 @@ public class VenueHireSystem {
 
   public void makeBooking(String[] options) {
     if (dateStored.isEmpty()) {
-      MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage(options);
+      MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
     } else if (allVenues.isEmpty()) {
-      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage(options);
+      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
     } else if (!allVenues.isEmpty()) {
       for (int i = 0; i < allVenues.size(); i++) {
-        if (allVenues.get(i).getAlias().equals(options[0])) {
-          MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options);
+        if (!allVenues.get(i).getAlias().equals(options[0])) {
+          MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
         }
       }
     } else if (!dateStored.isEmpty()) {
@@ -243,7 +243,7 @@ public class VenueHireSystem {
       int yearI = Integer.parseInt(datePartsI[2]); // "year"
 
       if (yearI > yearC || monthI > monthC || dayI > dayC) {
-        MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options);
+        MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(dateI, date);
       }
     } else if (bookings.size() >= 1) {
       for (int i = 0; i < bookings.size(); i++) {
