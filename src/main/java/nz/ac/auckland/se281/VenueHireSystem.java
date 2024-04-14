@@ -7,6 +7,7 @@ import nz.ac.auckland.se281.Types.FloralType;
 public class VenueHireSystem {
   ArrayList<Venues> allVenues = new ArrayList<Venues>();
   ArrayList<SystemDate> dateStored = new ArrayList<SystemDate>();
+  ArrayList<Bookings> bookings = new ArrayList<Bookings>();
 
   // ArrayList<String> venueArrayCode = new ArrayList<String>();
   // ArrayList<String> venueArrayCap = new ArrayList<String>();
@@ -244,7 +245,11 @@ public class VenueHireSystem {
       if (yearI > yearC || monthI > monthC || dayI > dayC) {
         MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options);
       }
+    }else if(){
+      MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
     }
+
+
   }
 
   public void printBookings(String venueCode) {
