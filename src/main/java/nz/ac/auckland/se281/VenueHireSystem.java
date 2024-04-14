@@ -246,11 +246,7 @@ public class VenueHireSystem {
       }
     } else if (bookings.size() >= 1) {
       for (int i = 0; i < bookings.size(); i++) {
-        if (bookings.get(i).getDateBooked().equals(options[1])
-            && !bookings.get(i).getVenueCode().equals(options[0])) {
-          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
-        } else if (bookings.get(i).getDateBooked().equals(options[1])
-            && bookings.get(i).getVenueCode().equals(options[0])) {
+        if (bookings.get(i).getDateBooked().equals(options[1])) {
           MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
         }
       }
@@ -264,7 +260,12 @@ public class VenueHireSystem {
       MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
           options[0],
           "" + Integer.parseInt(allVenues.get(allVenues.indexOf(options[0])).getCapacity()));
+    }else{
+      bookings.add(new Bookings(options[0], options[1], options[2], Integer.parseInt(options[3])));
+      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
+        BookingReferenceGenerator.generateBookingReference());
     }
+    
   }
 
   public void printBookings(String venueCode) {

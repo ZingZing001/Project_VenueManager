@@ -1,16 +1,20 @@
 package nz.ac.auckland.se281;
 
 public class Venues {
-  private String venueName;
-  private String venueCode;
-  private String capacityInput;
-  private String hireFeeInput;
+  protected String venueName;
+  protected String venueCode;
+  protected String capacityInput;
+  protected String hireFeeInput;
 
   public Venues(String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     this.venueName = venueName;
     this.venueCode = venueCode;
     this.capacityInput = capacityInput;
     this.hireFeeInput = hireFeeInput;
+  }
+
+  public Venues(String venueCode) {
+    this.venueCode = venueCode;
   }
 
   public String getVenueName() {
