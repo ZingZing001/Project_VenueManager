@@ -208,7 +208,14 @@ public class VenueHireSystem {
     MessageCli.DATE_SET.printMessage(date);
   }
 
-  public void printSystemDate() {}
+  public void printSystemDate() {
+    if (dateStored.isEmpty()) {
+      MessageCli.CURRENT_DATE.printMessage("is not");
+    } else {
+      String date = dateStored.get(0).getCurrentDate();
+      MessageCli.CURRENT_DATE.printMessage(date);
+    }
+  }
 
   public void makeBooking(String[] options) {
     // TODO implement this method
