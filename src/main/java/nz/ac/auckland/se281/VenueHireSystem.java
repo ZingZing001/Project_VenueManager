@@ -199,10 +199,13 @@ public class VenueHireSystem {
 
   public void setSystemDate(String dateInput) {
     // TODO implement this method
+
   }
 
   public void printSystemDate() {
-    // TODO implement this method
+    if (SystemDate.getCurrentDate() == null) {
+      MessageCli.CURRENT_DATE.printMessage("not set");
+    }
   }
 
   public void makeBooking(String[] options) {

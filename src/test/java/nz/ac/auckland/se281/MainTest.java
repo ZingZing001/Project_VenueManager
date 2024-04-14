@@ -14,7 +14,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
   MainTest.Task1.class,
-  // MainTest.Task2.class,
+  MainTest.Task2.class,
   // MainTest.Task3.class,
   MainTest.YourTests.class, // Uncomment this line to run your own tests
 })
@@ -738,6 +738,7 @@ public class MainTest {
       assertContains("Successfully created venue 'Frugal Fiesta Hall' (FFH).");
       assertContains("* Frugal Fiesta Hall (FFH) - 80 people - $150 base hire fee");
     }
+
     @Test
     public void T1_HD_second_venue_saved() throws Exception {
       runCommands(
@@ -759,6 +760,7 @@ public class MainTest {
       assertContains("Frugal Fiesta Hall (FFH) - 80 people - $150 base hire fee");
       assertContains("Comfy Corner Events Centre (CCEC) - 120 people - $250 base hire fee");
     }
+
     @Test
     public void T1_HD_nine_venues_saved() throws Exception {
       runCommands(unpack(CREATE_NINE_VENUES, PRINT_VENUES));
@@ -787,6 +789,7 @@ public class MainTest {
       assertDoesNotContain("There is", true);
       assertDoesNotContain("9 venues", true);
     }
+
     @Test
     public void T1_HD_reject_duplicate_venue_different_name() throws Exception {
       runCommands(
@@ -814,6 +817,7 @@ public class MainTest {
       assertDoesNotContain("two venue", true);
       assertDoesNotContain("2 venue", true);
     }
+
     @Test
     public void T1_HD_add_second_after_reject_duplicate() throws Exception {
       runCommands(
