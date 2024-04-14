@@ -210,7 +210,7 @@ public class VenueHireSystem {
 
   public void printSystemDate() {
     if (dateStored.isEmpty()) {
-      MessageCli.CURRENT_DATE.printMessage("is not");
+      MessageCli.CURRENT_DATE.printMessage("not set");
     } else {
       String date = dateStored.get(0).getCurrentDate();
       MessageCli.CURRENT_DATE.printMessage(date);
