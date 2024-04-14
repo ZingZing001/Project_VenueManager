@@ -231,23 +231,21 @@ public class VenueHireSystem {
     } else if (!dateStored.isEmpty()) {
       String date = dateStored.get(0).getCurrentDate();
       String[] datePartsC = date.split("/");
-      String dayC = datePartsC[0]; // "day"
-      String monthC = datePartsC[1]; // "month"
-      String yearC = datePartsC[2]; // "year"
+      int dayC = Integer.parseInt(datePartsC[0]); // "day"
+      int monthC = Integer.parseInt(datePartsC[1]); // "month"
+      int yearC = Integer.parseInt(datePartsC[2]); // "year"
 
       String dateI = options[1];
       String[] datePartsI = dateI.split("/");
-      int dayI = datePartsI[0]; // "day"
-      String monthI = datePartsI[1]; // "month"
-      String yearI = datePartsI[2]; // "year"
+      int dayI = Integer.parseInt(datePartsI[0]); // "day"
+      int monthI = Integer.parseInt(datePartsI[1]); // "month"
+      int yearI = Integer.parseInt(datePartsI[2]); // "year"
 
-      if(yearI >= yearC || monthI > monthC || ){
-
+      if (yearI > yearC || monthI > monthC || dayI > dayC) {
+        MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options);
       }
-
-      MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options);
-
     }
+  }
 
   public void printBookings(String venueCode) {
     // TODO implement this method
