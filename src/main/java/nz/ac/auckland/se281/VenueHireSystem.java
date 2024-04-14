@@ -218,16 +218,10 @@ public class VenueHireSystem {
   }
 
   public void makeBooking(String[] options) {
-    if (checkRequirements == 1) {
+    if (dateStored.isEmpty()) {
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage(options);
-    } else if (checkRequirements == 2) {
+    } else if (allVenues.isEmpty()) {
       MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage(options);
-    } else if (checkRequirements == 3) {
-      MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options);
-    } else if (checkRequirements == 4) {
-      MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options);
-    } else {
-      MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options);
     }
   }
 
