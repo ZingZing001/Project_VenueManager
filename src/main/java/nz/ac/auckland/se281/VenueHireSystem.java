@@ -279,7 +279,7 @@ public class VenueHireSystem {
       MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
           BookingReferenceGenerator.generateBookingReference(),
           allVenues.get(indexOfVenue).getVenueName(),
-          dateStored.get(0).getCurrentDate(),
+          options[1],
           "" + inputCapacity);
     }
   }
