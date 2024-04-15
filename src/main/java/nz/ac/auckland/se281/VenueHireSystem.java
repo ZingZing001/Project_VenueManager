@@ -238,6 +238,7 @@ public class VenueHireSystem {
       if ((yearI < yearC)
           || (monthI < monthC) && (dayI < dayC)
           || (monthI == monthC) && (dayI < dayC)) {
+        error = true;
         MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(dateI, date);
       }
     } else if (allVenues.isEmpty()) {
