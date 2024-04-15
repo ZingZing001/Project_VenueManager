@@ -222,6 +222,15 @@ public class VenueHireSystem {
     if (dateStored.isEmpty()) {
       error = true;
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+    } else if (allVenues.isEmpty()) {
+      error = true;
+      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
+    } else if (bookings.size() >= 1) {
+      for (int i = 0; i < bookings.size(); i++) {
+        if (bookings.get(i).getDateBooked().equals(options[1])) {
+          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
+        }
+      }
     } else if (!dateStored.isEmpty()) {
       String date = dateStored.get(0).getCurrentDate();
       String[] datePartsC = date.split("/");
@@ -240,15 +249,6 @@ public class VenueHireSystem {
           || (monthI == monthC) && (dayI < dayC)) {
         error = true;
         MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(dateI, date);
-      }
-    } else if (allVenues.isEmpty()) {
-      error = true;
-      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
-    } else if (bookings.size() >= 1) {
-      for (int i = 0; i < bookings.size(); i++) {
-        if (bookings.get(i).getDateBooked().equals(options[1])) {
-          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
-        }
       }
     }
     if (!error) {
