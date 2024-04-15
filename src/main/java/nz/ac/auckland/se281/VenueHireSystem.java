@@ -270,13 +270,16 @@ public class VenueHireSystem {
 
       int inputCapacity = Integer.parseInt(options[3]);
       int venueCapacity = Integer.parseInt(allVenues.get(indexOfVenue).getCapacity());
-      int attendeesLimits = (int) 0.25 * venueCapacity;
+      double attendeesLimits = 0.25 * venueCapacity;
       if (inputCapacity < attendeesLimits) {
-        inputCapacity = attendeesLimits;
-        MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage();
+        MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
+            "" + inputCapacity, "" + (int) attendeesLimits, "" + venueCapacity);
+        inputCapacity = (int) attendeesLimits;
+
       } else if (inputCapacity > venueCapacity) {
         inputCapacity = venueCapacity;
-        MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage();
+        MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
+            "" + inputCapacity, "" + (int) attendeesLimits, "" + venueCapacity);
       }
       bookings.add(
           new Bookings(
