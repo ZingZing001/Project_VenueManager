@@ -5,9 +5,9 @@ import nz.ac.auckland.se281.Types.CateringType;
 import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
-  ArrayList<Venues> allVenues = new ArrayList<Venues>();
-  ArrayList<SystemDate> dateStored = new ArrayList<SystemDate>();
-  ArrayList<Bookings> bookings = new ArrayList<Bookings>();
+  protected ArrayList<Venues> allVenues = new ArrayList<Venues>();
+  protected ArrayList<SystemDate> dateStored = new ArrayList<SystemDate>();
+  protected ArrayList<Bookings> bookings = new ArrayList<Bookings>();
 
   // ArrayList<String> venueArrayCode = new ArrayList<String>();
   // ArrayList<String> venueArrayCap = new ArrayList<String>();
@@ -218,17 +218,34 @@ public class VenueHireSystem {
   }
 
   public void makeBooking(String[] options) {
+    boolean error = false;
     if (dateStored.isEmpty()) {
+      error = true;
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
     } else if (allVenues.isEmpty()) {
+      error = true;
       MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
-    } else if (!allVenues.isEmpty()) {
-      for (int i = 0; i < allVenues.size(); i++) {
-        if (!allVenues.get(i).getAlias().equals(options[0])) {
-          MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
+    } else if (bookings.size() >= 1) {
+      for (int i = 0; i < bookings.size(); i++) {
+        if (bookings.get(i).getDateBooked().equals(options[1])) {
+          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
         }
       }
-    } else if (!dateStored.isEmpty()) {
+    }
+    if (!error) {
+      boolean found = false;
+      int indexOfVenue = 0;
+      for (int i = 0; i < allVenues.size(); i++) {
+        String storedVenue = allVenues.get(i).getAlias();
+        if (storedVenue.contains(options[0])) {
+          found = true;
+          indexOfVenue = i;
+        }
+      }
+      if (!found) {
+        error = true;
+        MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
+      }
       String date = dateStored.get(0).getCurrentDate();
       String[] datePartsC = date.split("/");
       int dayC = Integer.parseInt(datePartsC[0]); // "day"
@@ -244,28 +261,19 @@ public class VenueHireSystem {
       if (yearI > yearC || monthI > monthC || dayI > dayC) {
         MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(dateI, date);
       }
-    } else if (bookings.size() >= 1) {
-      for (int i = 0; i < bookings.size(); i++) {
-        if (bookings.get(i).getDateBooked().equals(options[1])) {
-          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
-        }
+
+      int inputCapacity = Integer.parseInt(options[3]);
+      int venueCapacity = Integer.parseInt(allVenues.get(indexOfVenue).getCapacity());
+      int attendeesLimits = (int) 0.25 * venueCapacity;
+      if (inputCapacity < attendeesLimits) {
+        inputCapacity = attendeesLimits;
+        MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage();
+      } else if (inputCapacity > venueCapacity) {
+        inputCapacity = venueCapacity;
+        MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage();
       }
-    } else if (Integer.parseInt(options[3])
-        < 0.25 * Integer.parseInt(allVenues.get(allVenues.indexOf(options[0])).getCapacity())) {
-      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
-          options[0],
-          "" + 0.25 * Integer.parseInt(allVenues.get(allVenues.indexOf(options[0])).getCapacity()));
-    } else if (Integer.parseInt(options[3])
-        > Integer.parseInt(allVenues.get(allVenues.indexOf(options[0])).getCapacity())) {
-      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
-          options[0],
-          "" + Integer.parseInt(allVenues.get(allVenues.indexOf(options[0])).getCapacity()));
-    }else{
-      bookings.add(new Bookings(options[0], options[1], options[2], Integer.parseInt(options[3])));
-      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
-        BookingReferenceGenerator.generateBookingReference());
+      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage();
     }
-    
   }
 
   public void printBookings(String venueCode) {
