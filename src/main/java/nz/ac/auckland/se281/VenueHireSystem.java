@@ -222,6 +222,24 @@ public class VenueHireSystem {
     if (dateStored.isEmpty()) {
       error = true;
       MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+    } else if (!dateStored.isEmpty()) {
+      String date = dateStored.get(0).getCurrentDate();
+      String[] datePartsC = date.split("/");
+      int dayC = Integer.parseInt(datePartsC[0]); // "day"
+      int monthC = Integer.parseInt(datePartsC[1]); // "month"
+      int yearC = Integer.parseInt(datePartsC[2]); // "year"
+
+      String dateI = options[1];
+      String[] datePartsI = dateI.split("/");
+      int dayI = Integer.parseInt(datePartsI[0]); // "day"
+      int monthI = Integer.parseInt(datePartsI[1]); // "month"
+      int yearI = Integer.parseInt(datePartsI[2]); // "year"
+
+      if ((yearI < yearC)
+          || (monthI < monthC) && (dayI < dayC)
+          || (monthI == monthC) && (dayI < dayC)) {
+        MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(dateI, date);
+      }
     } else if (allVenues.isEmpty()) {
       error = true;
       MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
@@ -245,21 +263,6 @@ public class VenueHireSystem {
       if (!found) {
         error = true;
         MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
-      }
-      String date = dateStored.get(0).getCurrentDate();
-      String[] datePartsC = date.split("/");
-      int dayC = Integer.parseInt(datePartsC[0]); // "day"
-      int monthC = Integer.parseInt(datePartsC[1]); // "month"
-      int yearC = Integer.parseInt(datePartsC[2]); // "year"
-
-      String dateI = options[1];
-      String[] datePartsI = dateI.split("/");
-      int dayI = Integer.parseInt(datePartsI[0]); // "day"
-      int monthI = Integer.parseInt(datePartsI[1]); // "month"
-      int yearI = Integer.parseInt(datePartsI[2]); // "year"
-
-      if (yearI > yearC || monthI > monthC || dayI > dayC) {
-        MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(dateI, date);
       }
 
       int inputCapacity = Integer.parseInt(options[3]);
