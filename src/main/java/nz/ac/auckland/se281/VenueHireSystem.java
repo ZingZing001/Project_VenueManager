@@ -228,7 +228,9 @@ public class VenueHireSystem {
     } else if (bookings.size() >= 1) {
       for (int i = 0; i < bookings.size(); i++) {
         if (bookings.get(i).getDateBooked().equals(options[1])) {
-          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(options);
+          error = true;
+          MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(
+              bookings.get(i).getVenueCode(), bookings.get(i).getDateBooked());
         }
       }
     } else if (!dateStored.isEmpty()) {
@@ -276,6 +278,9 @@ public class VenueHireSystem {
         inputCapacity = venueCapacity;
         MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage();
       }
+      bookings.add(
+          new Bookings(
+              allVenues.get(indexOfVenue).getVenueName(), options[1], options[2], inputCapacity));
       MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
           BookingReferenceGenerator.generateBookingReference(),
           allVenues.get(indexOfVenue).getVenueName(),
