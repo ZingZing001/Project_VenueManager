@@ -272,7 +272,11 @@ public class VenueHireSystem {
         inputCapacity = venueCapacity;
         MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage();
       }
-      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage();
+      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
+          BookingReferenceGenerator.generateBookingReference(),
+          allVenues.get(indexOfVenue).getVenueName(),
+          dateStored.get(0).getCurrentDate(),
+          "" + inputCapacity);
     }
   }
 
