@@ -277,9 +277,9 @@ public class VenueHireSystem {
         inputCapacity = (int) attendeesLimits;
 
       } else if (inputCapacity > venueCapacity) {
-        inputCapacity = venueCapacity;
         MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
-            "" + inputCapacity, "" + (int) attendeesLimits, "" + venueCapacity);
+            "" + inputCapacity, "" + venueCapacity, "" + venueCapacity);
+        inputCapacity = venueCapacity;
       }
       bookings.add(
           new Bookings(
