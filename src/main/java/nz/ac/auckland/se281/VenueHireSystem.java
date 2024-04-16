@@ -29,7 +29,11 @@ public class VenueHireSystem {
           String vCode = venues.getAlias();
           String vCapacity = venues.getCapacity();
           String vFees = venues.getFees();
-          MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees);
+          if (bookings.isEmpty()) {
+            String nexAvaliableDate = dateStored.get(0).getCurrentDate();
+            System.out.println(nexAvaliableDate);
+            MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, nexAvaliableDate);
+          }
         }
       } else if (allVenues.size() > 1 && allVenues.size() < 10) {
         MessageCli.NUMBER_VENUES.printMessage("are", strArr[allVenues.size()], "s");
@@ -38,7 +42,11 @@ public class VenueHireSystem {
           String vCode = venues.getAlias();
           String vCapacity = venues.getCapacity();
           String vFees = venues.getFees();
-          MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees);
+          if (bookings.isEmpty()) {
+            String nexAvaliableDate = dateStored.get(0).getCurrentDate();
+            System.out.println(nexAvaliableDate);
+            MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, nexAvaliableDate);
+          }
         }
       } else {
         MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(allVenues.size()), "s");
@@ -47,7 +55,11 @@ public class VenueHireSystem {
           String vCode = venues.getAlias();
           String vCapacity = venues.getCapacity();
           String vFees = venues.getFees();
-          MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees);
+          if (bookings.isEmpty()) {
+            String nexAvaliableDate = dateStored.get(0).getCurrentDate();
+            System.out.println(nexAvaliableDate);
+            MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, nexAvaliableDate);
+          }
         }
       }
     }
@@ -56,7 +68,6 @@ public class VenueHireSystem {
   //   String[] strArr = {
   //     "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
   //   };
-  //   // TODO implement this method
   //   // Check if theres any venue allready existed
   //   if (venueArrayName.isEmpty()) {
   //     MessageCli.NO_VENUES.printMessage();
