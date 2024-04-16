@@ -29,10 +29,11 @@ public class VenueHireSystem {
           String vCode = venues.getAlias();
           String vCapacity = venues.getCapacity();
           String vFees = venues.getFees();
-          if (bookings.isEmpty()) {
+          if (bookings.isEmpty() && !dateStored.isEmpty()) {
             String nexAvaliableDate = dateStored.get(0).getCurrentDate();
-            System.out.println(nexAvaliableDate);
             MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, nexAvaliableDate);
+          } else {
+            MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees);
           }
         }
       } else if (allVenues.size() > 1 && allVenues.size() < 10) {
@@ -42,10 +43,11 @@ public class VenueHireSystem {
           String vCode = venues.getAlias();
           String vCapacity = venues.getCapacity();
           String vFees = venues.getFees();
-          if (bookings.isEmpty()) {
+          if (bookings.isEmpty() && !dateStored.isEmpty()) {
             String nexAvaliableDate = dateStored.get(0).getCurrentDate();
-            System.out.println(nexAvaliableDate);
             MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, nexAvaliableDate);
+          } else {
+            MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees);
           }
         }
       } else {
@@ -55,10 +57,11 @@ public class VenueHireSystem {
           String vCode = venues.getAlias();
           String vCapacity = venues.getCapacity();
           String vFees = venues.getFees();
-          if (bookings.isEmpty()) {
+          if (bookings.isEmpty() && !dateStored.isEmpty()) {
             String nexAvaliableDate = dateStored.get(0).getCurrentDate();
-            System.out.println(nexAvaliableDate);
             MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, nexAvaliableDate);
+          } else {
+            MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees);
           }
         }
       }
