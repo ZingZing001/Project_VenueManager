@@ -1,6 +1,6 @@
 package nz.ac.auckland.se281;
 
-public class Bookings{
+public class Bookings {
   private String venueCode;
   private String currentDate;
   private String email;
@@ -16,7 +16,7 @@ public class Bookings{
   public String getVenueCode() {
     return venueCode;
   }
-  
+
   public String getDateBooked() {
     return currentDate;
   }
