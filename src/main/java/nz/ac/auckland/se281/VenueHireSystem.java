@@ -47,7 +47,7 @@ public class VenueHireSystem {
                 int day = Integer.parseInt(currentDateInParts[0]); // "day"
                 int month = Integer.parseInt(currentDateInParts[1]); // "month"
                 int year = Integer.parseInt(currentDateInParts[2]); // "year"
-                day = day++;
+                day = day + 1;
                 if (day > 31) {
                   day = 1;
                   month++;
@@ -60,7 +60,7 @@ public class VenueHireSystem {
                   currentDate = "0" + day + "/" + month + "/" + year;
                 } else if (month < 10 && day > 10) {
                   currentDate = day + "/" + "0" + month + "/" + year;
-                } else if (day < 10 && day < 10) {
+                } else if (day < 10 && month < 10) {
                   currentDate = "0" + day + "/" + "0" + month + "/" + year;
                 } else {
                   currentDate = day + "/" + month + "/" + year;
