@@ -42,32 +42,38 @@ public class VenueHireSystem {
           } else {
             for (int i = 0; i < bookings.size(); i++) {
               String occupiedDates = bookings.get(i).getDateBooked();
-              if (occupiedDates.equals(currentDate)) {
-                String[] currentDateInParts = currentDate.split("/");
-                int day = Integer.parseInt(currentDateInParts[0]); // "day"
-                int month = Integer.parseInt(currentDateInParts[1]); // "month"
-                int year = Integer.parseInt(currentDateInParts[2]); // "year"
-                day = day + 1;
-                if (day > 31) {
-                  day = 1;
-                  month++;
-                }
-                if (month > 12) {
-                  month = 1;
-                  year++;
-                }
-                if (day < 10 && month > 10) {
-                  currentDate = "0" + day + "/" + month + "/" + year;
-                } else if (month < 10 && day > 10) {
-                  currentDate = day + "/" + "0" + month + "/" + year;
-                } else if (day < 10 && month < 10) {
-                  currentDate = "0" + day + "/" + "0" + month + "/" + year;
+              String byWhichCompany = bookings.get(i).getvenueCode();
+              boolean daybooked = true;
+              while (daybooked) {
+                if (occupiedDates.equals(currentDate) && byWhichCompany.equals(vCode)) {
+                  String[] currentDateInParts = currentDate.split("/");
+                  int day = Integer.parseInt(currentDateInParts[0]); // "day"
+                  int month = Integer.parseInt(currentDateInParts[1]); // "month"
+                  int year = Integer.parseInt(currentDateInParts[2]); // "year"
+                  day = day + 1;
+                  if (day > 31) {
+                    day = 1;
+                    month++;
+                  }
+                  if (month > 12) {
+                    month = 1;
+                    year++;
+                  }
+                  if (day < 10 && month > 10) {
+                    currentDate = "0" + day + "/" + month + "/" + year;
+                  } else if (month < 10 && day > 10) {
+                    currentDate = day + "/" + "0" + month + "/" + year;
+                  } else if (day < 10 && month < 10) {
+                    currentDate = "0" + day + "/" + "0" + month + "/" + year;
+                  } else {
+                    currentDate = day + "/" + month + "/" + year;
+                  }
                 } else {
-                  currentDate = day + "/" + month + "/" + year;
+                  daybooked = false;
+                  MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, currentDate);
                 }
               }
             }
-            MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, currentDate);
           }
         } else {
           MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees);
@@ -252,7 +258,7 @@ public class VenueHireSystem {
         if (bookings.get(i).getDateBooked().equals(options[1])) {
           error = true;
           MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(
-              bookings.get(i).getVenueCode(), bookings.get(i).getDateBooked());
+              bookings.get(i).getVenueName(), bookings.get(i).getDateBooked());
         }
       }
     } else if (!dateStored.isEmpty()) {
@@ -305,7 +311,11 @@ public class VenueHireSystem {
       }
       bookings.add(
           new Bookings(
-              allVenues.get(indexOfVenue).getVenueName(), options[1], options[2], inputCapacity));
+              allVenues.get(indexOfVenue).getVenueName(),
+              options[1],
+              options[2],
+              inputCapacity,
+              allVenues.get(indexOfVenue).getAlias()));
       MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
           BookingReferenceGenerator.generateBookingReference(),
           allVenues.get(indexOfVenue).getVenueName(),

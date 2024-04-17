@@ -1,31 +1,38 @@
 package nz.ac.auckland.se281;
 
 public class Bookings {
-  private String venueCode;
+  private String venueName;
   private String currentDate;
   private String email;
   private int numberAttends;
+  private String venueCode;
 
-  public Bookings(String venueCode, String currentDate, String email, int numberAttends) {
-    this.venueCode = venueCode;
+  public Bookings(
+      String venueName, String currentDate, String email, int numberAttends, String venueCode) {
+    this.venueName = venueName;
     this.currentDate = currentDate;
     this.email = email;
     this.numberAttends = numberAttends;
+    this.venueCode = venueCode;
   }
 
-  public String getVenueCode() {
-    return venueCode;
+  public String getVenueName() {
+    return this.venueName;
+  }
+
+  public String getvenueCode() {
+    return this.venueCode;
   }
 
   public String getDateBooked() {
-    return currentDate;
+    return this.currentDate;
   }
 
   public String getEmail() {
-    return email;
+    return this.email;
   }
 
   public int getNumberAttends() {
-    return numberAttends;
+    return this.numberAttends;
   }
 }
