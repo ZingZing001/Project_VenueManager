@@ -9,10 +9,6 @@ public class VenueHireSystem {
   protected ArrayList<SystemDate> dateStored = new ArrayList<SystemDate>();
   protected ArrayList<Bookings> bookings = new ArrayList<Bookings>();
 
-  // ArrayList<String> venueArrayCode = new ArrayList<String>();
-  // ArrayList<String> venueArrayCap = new ArrayList<String>();
-  // ArrayList<String> venueArrayFee = new ArrayList<String>();
-
   public VenueHireSystem() {}
 
   public void printVenues() {
@@ -82,45 +78,6 @@ public class VenueHireSystem {
     }
   }
 
-  //   String[] strArr = {
-  //     "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
-  //   };
-  //   // Check if theres any venue allready existed
-  //   if (venueArrayName.isEmpty()) {
-  //     MessageCli.NO_VENUES.printMessage();
-  //     // Print all the venues out
-  //   } else {
-  //     if (venueArrayName.size() == 1) {
-  //       MessageCli.NUMBER_VENUES.printMessage("is", strArr[1], "");
-  //       for (int i = 0; i < venueArrayName.size(); i++) {
-  //         MessageCli.VENUE_ENTRY.printMessage(
-  //             venueArrayName.get(i),
-  //             venueArrayCode.get(i),
-  //             venueArrayCap.get(i),
-  //             venueArrayFee.get(i));
-  //       }
-  //     } else if (venueArrayName.size() > 1 && venueArrayName.size() < 10) {
-  //       MessageCli.NUMBER_VENUES.printMessage("are", strArr[venueArrayName.size()], "s");
-  //       for (int i = 0; i < venueArrayName.size(); i++) {
-  //         MessageCli.VENUE_ENTRY.printMessage(
-  //             venueArrayName.get(i),
-  //             venueArrayCode.get(i),
-  //             venueArrayCap.get(i),
-  //             venueArrayFee.get(i));
-  //       }
-  //     } else {
-  //       MessageCli.NUMBER_VENUES.printMessage("are", String.valueOf(venueArrayName.size()), "s");
-  //       for (int i = 0; i < venueArrayName.size(); i++) {
-  //         MessageCli.VENUE_ENTRY.printMessage(
-  //             venueArrayName.get(i),
-  //             venueArrayCode.get(i),
-  //             venueArrayCap.get(i),
-  //             venueArrayFee.get(i));
-  //       }
-  //     }
-  //   }
-  // }
-
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     boolean flag = true;
@@ -171,60 +128,6 @@ public class VenueHireSystem {
       allVenues.add(new Venues(venueName, venueCode, capacityInput, hireFeeInput));
     }
   }
-
-  //   // Check for venueName is empty or not
-  //   boolean flag = true;
-  //   if (venueName == null
-  //       || venueName.trim().isEmpty()
-  //       || venueName.isBlank()
-  //       || venueName.charAt(0) == ' ') {
-  //     flag = false;
-  //     MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
-  //   }
-  //   // Check if this venueCode is unique throughout the system
-  //   if (venueArrayCode.size() >= 1) {
-  //     if (venueArrayCode.contains(venueCode)) {
-  //       flag = false;
-  //       int pos = venueCode.indexOf(venueCode);
-  //       MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode,
-  // venueArrayName.get(pos));
-  //     }
-  //   }
-  //   // Check if capacityInput is valid or not
-  //   try {
-  //     Integer.parseInt(capacityInput);
-  //     if (Integer.valueOf(capacityInput) <= 0) {
-  //       flag = false;
-  //       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
-  //     } else if (capacityInput.contains(".")) {
-  //       flag = false;
-  //       MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " whole");
-  //     }
-  //   } catch (NumberFormatException e) {
-  //     flag = false;
-  //     MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", "");
-  //   }
-
-  //   // Check if venueFees is valid or not
-  //   if (!hireFeeInput.matches(".*\\d+.*")) {
-  //     flag = false;
-  //     MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
-  //   } else if (Integer.valueOf(hireFeeInput) <= 0) {
-  //     flag = false;
-  //     MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
-  //   } else if (hireFeeInput.contains(".")) {
-  //     flag = false;
-  //     MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
-  //   }
-
-  //   if (flag == true) {
-  //     MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
-  //     venueArrayName.add(venueName);
-  //     venueArrayCode.add(venueCode);
-  //     venueArrayCap.add(capacityInput);
-  //     venueArrayFee.add(hireFeeInput);
-  //   }
-  // }
 
   public void setSystemDate(String dateInput) {
     if (dateStored.isEmpty()) {
