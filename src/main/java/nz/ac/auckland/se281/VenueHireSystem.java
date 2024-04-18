@@ -321,7 +321,7 @@ public class VenueHireSystem {
       MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
     } else {
       MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
-          bookingReference, customerEmail, dateOfBooking, partyDate, venueName, numberOfGuest);
+          bookingReference, customerEmail, dateOfBooking, partyDate, numberOfGuest, venueName);
     }
   }
 }
