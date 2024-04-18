@@ -238,25 +238,32 @@ public class VenueHireSystem {
   public void printBookings(String venueCode) {
     int indexOfVenue = 0;
     String venueStored;
+    boolean errorNoneFound = false;
+    String nameOfVenue;
     for (int i = 0; i < allVenues.size(); i++) {
       venueStored = allVenues.get(i).getAlias();
       if (!venueStored.equals(venueCode)) {
-        MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+        errorNoneFound = true;
       } else {
         indexOfVenue = i;
-        String nameOfVenue = allVenues.get(indexOfVenue).getVenueName();
-        MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(nameOfVenue);
+        nameOfVenue = allVenues.get(indexOfVenue).getVenueName();
+        MessageCli.PRINT_BOOKINGS_HEADER.printMessage(nameOfVenue);
         if (bookings.isEmpty()) {
           MessageCli.PRINT_BOOKINGS_NONE.printMessage(nameOfVenue);
+          break;
         }
       }
     }
-    for (Bookings allbooking : bookings) {
-      if (allbooking.getvenueCode().equals(venueCode)) {
-        String bookingReference = allbooking.getBookingReference();
-        MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(null);
-      }
-    }
+    // if (errorNoneFound) {
+    //   MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+    // } else {
+    //   for (Bookings allbooking : bookings) {
+    //     if (allbooking.getvenueCode().equals(venueCode)) {
+    //       String bookingReference = allbooking.getBookingReference();
+    //       MessageCli.PRINT_BOOKINGS_ENTRY.printMessage();
+    //     }
+    //   }
+    // }
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
