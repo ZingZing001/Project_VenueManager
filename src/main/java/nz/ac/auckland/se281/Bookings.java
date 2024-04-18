@@ -6,14 +6,22 @@ public class Bookings {
   private String email;
   private int numberAttends;
   private String venueCode;
+  private String referenceId;
 
   public Bookings(
-      String venueName, String currentDate, String email, int numberAttends, String venueCode) {
+      String venueName,
+      String currentDate,
+      String email,
+      int numberAttends,
+      String venueCode,
+      String refernceId) {
+
     this.venueName = venueName;
     this.currentDate = currentDate;
     this.email = email;
     this.numberAttends = numberAttends;
     this.venueCode = venueCode;
+    this.referenceId = refernceId;
   }
 
   public String getVenueName() {
@@ -34,5 +42,9 @@ public class Bookings {
 
   public int getNumberAttends() {
     return this.numberAttends;
+  }
+
+  public String getBookingReference() {
+    return referenceId;
   }
 }

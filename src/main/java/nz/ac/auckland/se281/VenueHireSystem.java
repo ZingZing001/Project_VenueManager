@@ -8,6 +8,7 @@ public class VenueHireSystem {
   protected ArrayList<Venues> allVenues = new ArrayList<Venues>();
   protected ArrayList<SystemDate> dateStored = new ArrayList<SystemDate>();
   protected ArrayList<Bookings> bookings = new ArrayList<Bookings>();
+  protected ArrayList<String> references = new ArrayList<String>();
 
   public VenueHireSystem() {}
 
@@ -212,26 +213,48 @@ public class VenueHireSystem {
             "" + inputCapacity, "" + venueCapacity, "" + venueCapacity);
         inputCapacity = venueCapacity;
       }
+      String venueNameBooked = allVenues.get(indexOfVenue).getVenueName();
       bookings.add(
           new Bookings(
-              allVenues.get(indexOfVenue).getVenueName(),
+              venueNameBooked,
               options[1],
               options[2],
               inputCapacity,
-              allVenues.get(indexOfVenue).getAlias()));
-      MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
-          BookingReferenceGenerator.generateBookingReference(),
-          allVenues.get(indexOfVenue).getVenueName(),
-          options[1],
-          "" + inputCapacity);
+              allVenues.get(indexOfVenue).getAlias(),
+              BookingReferenceGenerator.generateBookingReference()));
+      for (int i = 0; i < bookings.size(); i++) {
+        if (bookings.get(i).getVenueName().equals(venueNameBooked)) {
+          int venueindex = i;
+          MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
+              bookings.get(venueindex).getBookingReference(),
+              allVenues.get(indexOfVenue).getVenueName(),
+              options[1],
+              "" + inputCapacity);
+        }
+      }
     }
   }
 
   public void printBookings(String venueCode) {
-    // Checks if venue exist through my venue
+    int indexOfVenue = 0;
+    String venueStored;
     for (int i = 0; i < allVenues.size(); i++) {
-      if (!allVenues.get(i).getAlias().equals(venueCode)) {
+      venueStored = allVenues.get(i).getAlias();
+      if (!venueStored.equals(venueCode)) {
         MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+      } else {
+        indexOfVenue = i;
+        String nameOfVenue = allVenues.get(indexOfVenue).getVenueName();
+        MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(nameOfVenue);
+        if (bookings.isEmpty()) {
+          MessageCli.PRINT_BOOKINGS_NONE.printMessage(nameOfVenue);
+        }
+      }
+    }
+    for (Bookings allbooking : bookings) {
+      if (allbooking.getvenueCode().equals(venueCode)) {
+        String bookingReference = allbooking.getBookingReference();
+        MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(null);
       }
     }
   }
