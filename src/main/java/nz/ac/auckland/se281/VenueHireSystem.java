@@ -301,20 +301,25 @@ public class VenueHireSystem {
   }
 
   public void viewInvoice(String bookingReference) {
-    String customerEmail;
-    String dateOfBooking;
-    String partyDate;
-    String venueName;
-    int numberOfGuest;
+    String customerEmail = null;
+    String dateOfBooking = null;
+    String partyDate = null;
+    ;
+    String venueName = null;
+    String numberOfGuest = null;
 
     for (Bookings venuesBooked : bookings) {
       if (venuesBooked.getBookingReference().equals(bookingReference)) {
         customerEmail = venuesBooked.getEmail();
         dateOfBooking = venuesBooked.getSystemDate();
         partyDate = venuesBooked.getDateBooked();
+        venueName = venuesBooked.getVenueName();
+        numberOfGuest = "" + venuesBooked.getNumberAttends();
+      } else {
+        MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
       }
     }
-
-    MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference);
+    MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
+        bookingReference, customerEmail, dateOfBooking, partyDate, venueName, numberOfGuest);
   }
 }
