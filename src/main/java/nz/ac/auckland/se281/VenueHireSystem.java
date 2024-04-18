@@ -304,9 +304,10 @@ public class VenueHireSystem {
     String customerEmail = null;
     String dateOfBooking = null;
     String partyDate = null;
-    ;
     String venueName = null;
     String numberOfGuest = null;
+    String venueHireFee = null;
+    int indexFound;
 
     for (Bookings venuesBooked : bookings) {
       if (venuesBooked.getBookingReference().equals(bookingReference)) {
@@ -322,6 +323,14 @@ public class VenueHireSystem {
     } else {
       MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
           bookingReference, customerEmail, dateOfBooking, partyDate, numberOfGuest, venueName);
+      for (int i = 0; i < allVenues.size(); i++) {
+        for (int j = 0; j < bookings.size(); j++) {
+          if (allVenues.get(i).getAlias().equals(bookings.get(j).getvenueCode())) {
+            venueHireFee = allVenues.get(i).getFees();
+          }
+        }
+      }
+      MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(venueHireFee);
     }
   }
 }
