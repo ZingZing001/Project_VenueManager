@@ -315,11 +315,13 @@ public class VenueHireSystem {
         partyDate = venuesBooked.getDateBooked();
         venueName = venuesBooked.getVenueName();
         numberOfGuest = "" + venuesBooked.getNumberAttends();
-      } else {
-        MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
       }
     }
-    MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
-        bookingReference, customerEmail, dateOfBooking, partyDate, venueName, numberOfGuest);
+    if (customerEmail.isBlank()) {
+      MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
+    } else {
+      MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
+          bookingReference, customerEmail, dateOfBooking, partyDate, venueName, numberOfGuest);
+    }
   }
 }
