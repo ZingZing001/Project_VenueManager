@@ -219,6 +219,7 @@ public class VenueHireSystem {
           new Bookings(
               venueNameBooked,
               options[1],
+              dateStored.get(0).getCurrentDate(),
               options[2],
               inputCapacity,
               allVenues.get(indexOfVenue).getAlias(),
@@ -300,6 +301,20 @@ public class VenueHireSystem {
   }
 
   public void viewInvoice(String bookingReference) {
-    // TODO implement this method
+    String customerEmail;
+    String dateOfBooking;
+    String partyDate;
+    String venueName;
+    int numberOfGuest;
+
+    for (Bookings venuesBooked : bookings) {
+      if (venuesBooked.getBookingReference().equals(bookingReference)) {
+        customerEmail = venuesBooked.getEmail();
+        dateOfBooking = venuesBooked.getSystemDate();
+        partyDate = venuesBooked.getDateBooked();
+      }
+    }
+
+    MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(bookingReference);
   }
 }

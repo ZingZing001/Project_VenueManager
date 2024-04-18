@@ -7,10 +7,12 @@ public class Bookings {
   private int numberAttends;
   private String venueCode;
   private String referenceId;
+  private String systemDate;
 
   public Bookings(
       String venueName,
       String currentDate,
+      String systemDate,
       String email,
       int numberAttends,
       String venueCode,
@@ -18,6 +20,7 @@ public class Bookings {
 
     this.venueName = venueName;
     this.currentDate = currentDate;
+    this.systemDate = systemDate;
     this.email = email;
     this.numberAttends = numberAttends;
     this.venueCode = venueCode;
@@ -30,6 +33,10 @@ public class Bookings {
 
   public String getvenueCode() {
     return this.venueCode;
+  }
+
+  public String getSystemDate() {
+    return this.systemDate;
   }
 
   public String getDateBooked() {
