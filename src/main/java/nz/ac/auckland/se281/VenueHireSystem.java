@@ -238,12 +238,12 @@ public class VenueHireSystem {
   public void printBookings(String venueCode) {
     int indexOfVenue = 0;
     String venueStored;
-    boolean errorNoneFound = false;
+    int errorNoneFound = 0;
     String nameOfVenue;
     for (int i = 0; i < allVenues.size(); i++) {
       venueStored = allVenues.get(i).getAlias();
       if (!venueStored.equals(venueCode)) {
-        errorNoneFound = true;
+        errorNoneFound++;
       } else {
         indexOfVenue = i;
         nameOfVenue = allVenues.get(indexOfVenue).getVenueName();
@@ -254,8 +254,9 @@ public class VenueHireSystem {
         }
       }
     }
-    // if (errorNoneFound) {
-    //   MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+    if (errorNoneFound == allVenues.size()) {
+      MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+    }
     // } else {
     //   for (Bookings allbooking : bookings) {
     //     if (allbooking.getvenueCode().equals(venueCode)) {
