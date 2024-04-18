@@ -228,7 +228,12 @@ public class VenueHireSystem {
   }
 
   public void printBookings(String venueCode) {
-    // Checks if venuecode exist through my venue
+    // Checks if venue exist through my venue
+    for (int i = 0; i < allVenues.size(); i++) {
+      if (!allVenues.get(i).getAlias().equals(venueCode)) {
+        MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+      }
+    }
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
