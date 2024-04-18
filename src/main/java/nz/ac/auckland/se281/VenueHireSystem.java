@@ -8,7 +8,6 @@ public class VenueHireSystem {
   protected ArrayList<Venues> allVenues = new ArrayList<Venues>();
   protected ArrayList<SystemDate> dateStored = new ArrayList<SystemDate>();
   protected ArrayList<Bookings> bookings = new ArrayList<Bookings>();
-  protected ArrayList<String> references = new ArrayList<String>();
 
   public VenueHireSystem() {}
 
@@ -31,9 +30,14 @@ public class VenueHireSystem {
         String vCode = venues.getAlias();
         String vCapacity = venues.getCapacity();
         String vFees = venues.getFees();
+
         if (!dateStored.isEmpty()) {
           String systemdate = dateStored.get(0).getCurrentDate();
           String currentDate = systemdate;
+          String[] currentDateInParts = currentDate.split("/");
+          int day = Integer.parseInt(currentDateInParts[0]); // "day"
+          int month = Integer.parseInt(currentDateInParts[1]); // "month"
+          int year = Integer.parseInt(currentDateInParts[2]); // "year"
           if (bookings.isEmpty()) {
             MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, systemdate);
           } else {
@@ -43,10 +47,6 @@ public class VenueHireSystem {
               boolean daybooked = true;
               while (daybooked) {
                 if (occupiedDates.equals(currentDate) && byWhichCompany.equals(vCode)) {
-                  String[] currentDateInParts = currentDate.split("/");
-                  int day = Integer.parseInt(currentDateInParts[0]); // "day"
-                  int month = Integer.parseInt(currentDateInParts[1]); // "month"
-                  int year = Integer.parseInt(currentDateInParts[2]); // "year"
                   day = day + 1;
                   if (day > 31) {
                     day = 1;
@@ -67,10 +67,10 @@ public class VenueHireSystem {
                   }
                 } else {
                   daybooked = false;
-                  MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, currentDate);
                 }
               }
             }
+            MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees, currentDate);
           }
         } else {
           MessageCli.VENUE_ENTRY.printMessage(vName, vCode, vCapacity, vFees);
