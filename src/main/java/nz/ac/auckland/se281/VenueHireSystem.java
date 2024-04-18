@@ -8,6 +8,7 @@ public class VenueHireSystem {
   protected ArrayList<Venues> allVenues = new ArrayList<Venues>();
   protected ArrayList<SystemDate> dateStored = new ArrayList<SystemDate>();
   protected ArrayList<Bookings> bookings = new ArrayList<Bookings>();
+  protected ArrayList<Services> services = new ArrayList<Services>();
 
   public VenueHireSystem() {}
 
