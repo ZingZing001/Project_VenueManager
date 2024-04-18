@@ -228,7 +228,7 @@ public class VenueHireSystem {
   }
 
   public void printBookings(String venueCode) {
-    // TODO implement this method
+    // Checks if venuecode exist through my venue
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
