@@ -256,15 +256,15 @@ public class VenueHireSystem {
     }
     if (errorNoneFound == allVenues.size()) {
       MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+    } else {
+      for (Bookings allbooking : bookings) {
+        if (allbooking.getvenueCode().equals(venueCode)) {
+          String bookingReference = allbooking.getBookingReference();
+          String bookingDate = allbooking.getDateBooked();
+          MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(bookingReference, bookingDate);
+        }
+      }
     }
-    // } else {
-    //   for (Bookings allbooking : bookings) {
-    //     if (allbooking.getvenueCode().equals(venueCode)) {
-    //       String bookingReference = allbooking.getBookingReference();
-    //       MessageCli.PRINT_BOOKINGS_ENTRY.printMessage();
-    //     }
-    //   }
-    // }
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
