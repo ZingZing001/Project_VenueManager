@@ -8,7 +8,6 @@ public class VenueHireSystem {
   protected ArrayList<Venues> allVenues = new ArrayList<Venues>();
   protected ArrayList<SystemDate> dateStored = new ArrayList<SystemDate>();
   protected ArrayList<Bookings> bookings = new ArrayList<Bookings>();
-  protected ArrayList<Services> services = new ArrayList<Services>();
 
   public VenueHireSystem() {}
 
@@ -273,7 +272,18 @@ public class VenueHireSystem {
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
-    // TODO implement this method
+    Catering catering = new Catering(bookingReference, cateringType);
+    if (bookings.isEmpty()) {
+      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(
+          catering.getItemType(), bookingReference);
+    }
+    for (Bookings venuesBooked : bookings) {
+      if (venuesBooked.getBookingReference().equals(bookingReference)) {
+      } else {
+        MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(
+            catering.getItemType(), bookingReference);
+      }
+    }
   }
 
   public void addServiceMusic(String bookingReference) {

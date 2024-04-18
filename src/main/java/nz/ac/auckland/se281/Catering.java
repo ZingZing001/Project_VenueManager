@@ -1,10 +1,19 @@
 package nz.ac.auckland.se281;
 
-public class Catering extends Services {
-  private String CateringType;
+import nz.ac.auckland.se281.Types.CateringType;
 
-  public Catering(String referenceNumber, String CateringType) {
+public class Catering extends Services {
+  private CateringType inputCatering;
+  private String serviceType;
+
+  public Catering(String referenceNumber, CateringType inputCatering) {
     super(referenceNumber);
-    this.CateringType = CateringType;
+    this.inputCatering = inputCatering;
+    this.serviceType = "Catering";
+  }
+
+  @Override
+  public String getItemType() {
+    return this.serviceType;
   }
 }

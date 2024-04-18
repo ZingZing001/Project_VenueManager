@@ -6,4 +6,6 @@ public abstract class Services {
   public Services(String referenceNumber) {
     this.referenceNumber = referenceNumber;
   }
+
+  protected abstract String getItemType();
 }
