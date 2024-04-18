@@ -12,6 +12,14 @@ public class Catering extends Services {
     this.serviceType = "Catering";
   }
 
+  public String getReferenceNumber() {
+    return this.referenceNumber;
+  }
+
+  public CateringType getCateringType() {
+    return this.CateringType;
+  }
+
   @Override
   public String getItemType() {
     return this.serviceType;

@@ -8,6 +8,7 @@ public class VenueHireSystem {
   protected ArrayList<Venues> allVenues = new ArrayList<Venues>();
   protected ArrayList<SystemDate> dateStored = new ArrayList<SystemDate>();
   protected ArrayList<Bookings> bookings = new ArrayList<Bookings>();
+  protected ArrayList<Services> services = new ArrayList<Services>();
 
   public VenueHireSystem() {}
 
@@ -279,6 +280,10 @@ public class VenueHireSystem {
     }
     for (Bookings venuesBooked : bookings) {
       if (venuesBooked.getBookingReference().equals(bookingReference)) {
+        services.add(catering);
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
+            catering.getItemType() + " (" + catering.getCateringType().getName() + ")",
+            bookingReference);
       } else {
         MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(
             catering.getItemType(), bookingReference);
