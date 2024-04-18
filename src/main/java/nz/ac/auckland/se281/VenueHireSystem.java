@@ -222,11 +222,12 @@ public class VenueHireSystem {
               inputCapacity,
               allVenues.get(indexOfVenue).getAlias(),
               BookingReferenceGenerator.generateBookingReference()));
+
       for (int i = 0; i < bookings.size(); i++) {
-        if (bookings.get(i).getVenueName().equals(venueNameBooked)) {
-          int venueindex = i;
+        if (bookings.get(i).getVenueName().equals(venueNameBooked)
+            && bookings.get(i).getDateBooked() == options[1]) {
           MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
-              bookings.get(venueindex).getBookingReference(),
+              bookings.get(i).getBookingReference(),
               allVenues.get(indexOfVenue).getVenueName(),
               options[1],
               "" + inputCapacity);
@@ -262,6 +263,9 @@ public class VenueHireSystem {
           String bookingReference = allbooking.getBookingReference();
           String bookingDate = allbooking.getDateBooked();
           MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(bookingReference, bookingDate);
+        } else {
+          MessageCli.PRINT_BOOKINGS_NONE.printMessage(allVenues.get(indexOfVenue).getVenueName());
+          break;
         }
       }
     }
