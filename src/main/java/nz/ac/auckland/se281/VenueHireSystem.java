@@ -291,7 +291,7 @@ public class VenueHireSystem {
   public void addServiceMusic(String bookingReference) {
     for (Bookings booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
-        Music music = new Music(bookingReference, 500);
+        Music music = new Music(bookingReference);
         booking.addService(music);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(music.getItemType(), bookingReference);
         return;
@@ -348,6 +348,9 @@ public class VenueHireSystem {
             floralFee = floral.getFloralType().getCost();
             floralType = floral.getFloralType().getName();
             noServices = false;
+          } else if (services.getItemType().equals("Music")) {
+            musicType = "Music";
+            musicFee = 500;
           } else {
             noServices = true;
           }
@@ -377,6 +380,8 @@ public class VenueHireSystem {
                   catertingType, "" + cateringFee);
             } else if (services instanceof Floral) {
               MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralType, "" + floralFee);
+            } else if (services.getItemType().equals("Music")) {
+              MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage("" + musicFee);
             }
           }
           MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
@@ -385,9 +390,6 @@ public class VenueHireSystem {
           MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
         }
       }
-
-      // MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralFee);
-      // MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(totalFee);
     }
   }
 }
