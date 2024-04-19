@@ -289,7 +289,16 @@ public class VenueHireSystem {
   }
 
   public void addServiceMusic(String bookingReference) {
-    // TODO implement this method
+    for (Bookings booking : bookings) {
+      if (booking.getBookingReference().equals(bookingReference)) {
+        Music music = new Music(bookingReference, 500);
+        booking.addService(music);
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
+            music.getItemType() + " (" + music.getItemType() + ")", bookingReference);
+        return;
+      }
+    }
+    MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music", bookingReference);
   }
 
   public void addServiceFloral(String bookingReference, FloralType floralType) {
@@ -314,6 +323,8 @@ public class VenueHireSystem {
     String venueHireFee = null;
     String catertingType = null;
     String floralType = null;
+    String musicType = null;
+    int musicFee = 500;
     int cateringFee = 0;
     int floralFee = 0;
     int indexFound;
@@ -369,7 +380,6 @@ public class VenueHireSystem {
               MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralType, "" + floralFee);
             }
           }
-
           MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
         } else {
           totalCost = Integer.parseInt(venueHireFee);
