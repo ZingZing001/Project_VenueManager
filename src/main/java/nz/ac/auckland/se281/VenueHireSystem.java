@@ -385,6 +385,7 @@ public class VenueHireSystem {
         }
         totalCost = musicFee + cateringFee + floralFee + Integer.parseInt(venueHireFee);
         MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
+        break;
       }
     }
   }
