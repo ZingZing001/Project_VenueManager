@@ -293,8 +293,7 @@ public class VenueHireSystem {
       if (booking.getBookingReference().equals(bookingReference)) {
         Music music = new Music(bookingReference, 500);
         booking.addService(music);
-        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
-            music.getItemType() + " (" + music.getItemType() + ")", bookingReference);
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(music.getItemType(), bookingReference);
         return;
       }
     }
