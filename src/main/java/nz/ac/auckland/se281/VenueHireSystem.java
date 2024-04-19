@@ -325,7 +325,7 @@ public class VenueHireSystem {
     String venueHireFee = null;
     String catertingType = null;
     String floralType = null;
-    int musicFee = 500;
+    int musicFee = 0;
     int cateringFee = 0;
     int floralFee = 0;
     int totalCost = 0;
@@ -375,6 +375,7 @@ public class VenueHireSystem {
             } else if (services instanceof Floral) {
               MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralType, "" + floralFee);
             } else {
+              musicFee = 500;
               MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage("" + musicFee);
             }
           }
@@ -382,7 +383,7 @@ public class VenueHireSystem {
           totalCost = Integer.parseInt(venueHireFee);
           MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
         }
-        totalCost = cateringFee + floralFee + Integer.parseInt(venueHireFee);
+        totalCost = musicFee + cateringFee + floralFee + Integer.parseInt(venueHireFee);
         MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
       }
     }
