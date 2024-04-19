@@ -199,6 +199,7 @@ public class VenueHireSystem {
       if (!found) {
         error = true;
         MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
+        return;
       }
 
       int inputCapacity = Integer.parseInt(options[3]);
