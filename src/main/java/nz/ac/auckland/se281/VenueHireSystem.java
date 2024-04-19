@@ -82,6 +82,7 @@ public class VenueHireSystem {
     }
   }
 
+  // Creates Venues based on the venueName, venueCode, capcityOfVenue, and its hiring fee
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     boolean flag = true;
@@ -303,6 +304,7 @@ public class VenueHireSystem {
     MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Music", bookingReference);
   }
 
+  // Adds Floral service
   public void addServiceFloral(String bookingReference, FloralType floralType) {
     for (Bookings booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
