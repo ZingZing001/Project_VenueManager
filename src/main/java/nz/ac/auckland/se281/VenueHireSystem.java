@@ -303,7 +303,9 @@ public class VenueHireSystem {
     String venueName = null;
     String numberOfGuest = null;
     String venueHireFee = null;
-    int floralFee;
+    String catertingType = null;
+    int cateringFee = 0;
+    int floralFee = 0;
     int indexFound;
 
     for (Bookings venuesBooked : bookings) {
@@ -313,6 +315,13 @@ public class VenueHireSystem {
         partyDate = venuesBooked.getDateBooked();
         venueName = venuesBooked.getVenueName();
         numberOfGuest = "" + venuesBooked.getNumberAttends();
+        for (Services services : venuesBooked.getServices()) {
+          if (services instanceof Catering) {
+            Catering catering = (Catering) services;
+            cateringFee = catering.getCateringType().getCostPerPerson();
+            catertingType = catering.getCateringType().getName();
+          }
+        }
       }
     }
     if (customerEmail.isBlank()) {
@@ -328,11 +337,9 @@ public class VenueHireSystem {
         }
       }
       MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(venueHireFee);
-      if (services.size() != 0) {
-        for (Services serviceType : services) {
-          if (serviceType.getItemType().equals("Catering")) {}
-        }
-      }
+      cateringFee = cateringFee * Integer.parseInt(numberOfGuest);
+      MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(catertingType, "" + cateringFee);
+      MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage("" + floralFee);
 
       // MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralFee);
       // MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(totalFee);

@@ -13,8 +13,6 @@ public class Bookings {
   private String systemDate;
   private List<Services> services = new ArrayList<>();
 
-  // existing constructor and methods
-
   public Bookings(
       String venueName,
       String currentDate,
