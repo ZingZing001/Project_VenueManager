@@ -277,6 +277,7 @@ public class VenueHireSystem {
     }
   }
 
+  // Adding catering service to the venues
   public void addCateringService(String bookingReference, CateringType cateringType) {
 
     for (Bookings booking : bookings) {
@@ -292,6 +293,7 @@ public class VenueHireSystem {
     MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Catering", bookingReference);
   }
 
+  // Adding Music service for the venue
   public void addServiceMusic(String bookingReference) {
     for (Bookings booking : bookings) {
       if (booking.getBookingReference().equals(bookingReference)) {
@@ -318,6 +320,7 @@ public class VenueHireSystem {
     MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Floral", bookingReference);
   }
 
+  // Shows the overall invoice
   public void viewInvoice(String bookingReference) {
     String customerEmail = null;
     String dateOfBooking = null;
