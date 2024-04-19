@@ -293,7 +293,15 @@ public class VenueHireSystem {
   }
 
   public void addServiceFloral(String bookingReference, FloralType floralType) {
-    // TODO implement this method
+    for (Bookings booking : bookings) {
+      if (booking.getBookingReference().equals(bookingReference)) {
+        Floral floral = new Floral(bookingReference, floralType);
+        booking.addService(floral);
+        MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
+            floral.getItemType() + " (" + floral.getFloralType().getName() + ")", bookingReference);
+        return;
+      }
+    }
   }
 
   public void viewInvoice(String bookingReference) {
@@ -304,6 +312,7 @@ public class VenueHireSystem {
     String numberOfGuest = null;
     String venueHireFee = null;
     String catertingType = null;
+    String floralType = null;
     int cateringFee = 0;
     int floralFee = 0;
     int indexFound;
@@ -322,6 +331,11 @@ public class VenueHireSystem {
             Catering catering = (Catering) services;
             cateringFee = catering.getCateringType().getCostPerPerson();
             catertingType = catering.getCateringType().getName();
+            noServices = false;
+          } else if (services instanceof Floral) {
+            Floral floral = (Floral) services;
+            floralFee = floral.getFloralType().getCost();
+            floralType = floral.getFloralType().getName();
             noServices = false;
           } else {
             noServices = true;
