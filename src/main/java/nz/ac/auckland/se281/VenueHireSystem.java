@@ -307,6 +307,7 @@ public class VenueHireSystem {
     String venueName = null;
     String numberOfGuest = null;
     String venueHireFee = null;
+    int floralFee;
     int indexFound;
 
     for (Bookings venuesBooked : bookings) {
@@ -331,6 +332,14 @@ public class VenueHireSystem {
         }
       }
       MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(venueHireFee);
+      if (services.size() != 0) {
+        for (Services serviceType : services) {
+          if (serviceType.getItemType().equals("Catering")) {}
+        }
+      }
+
+      // MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralFee);
+      // MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(totalFee);
     }
   }
 }
