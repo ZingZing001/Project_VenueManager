@@ -322,9 +322,9 @@ public class VenueHireSystem {
             Catering catering = (Catering) services;
             cateringFee = catering.getCateringType().getCostPerPerson();
             catertingType = catering.getCateringType().getName();
+            noServices = false;
           } else {
             noServices = true;
-            break;
           }
         }
       }
@@ -342,15 +342,17 @@ public class VenueHireSystem {
         }
       }
       MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(venueHireFee);
-      if (!noServices) {
-        cateringFee = cateringFee * Integer.parseInt(numberOfGuest);
-        totalCost = cateringFee + floralFee + Integer.parseInt(venueHireFee);
-        MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(catertingType, "" + cateringFee);
-        MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage("" + floralFee);
-        MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
-      } else {
-        totalCost = Integer.parseInt(venueHireFee);
-        MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
+      for (Bookings allbookedVenus : bookings) {
+        if (!allbookedVenus.getServices().isEmpty()) {
+          cateringFee = cateringFee * Integer.parseInt(numberOfGuest);
+          totalCost = cateringFee + floralFee + Integer.parseInt(venueHireFee);
+          MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(catertingType, "" + cateringFee);
+          MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage("" + floralFee);
+          MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
+        } else {
+          totalCost = Integer.parseInt(venueHireFee);
+          MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
+        }
       }
 
       // MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralFee);
