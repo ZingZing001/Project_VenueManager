@@ -307,6 +307,8 @@ public class VenueHireSystem {
     int cateringFee = 0;
     int floralFee = 0;
     int indexFound;
+    int totalCost;
+    boolean noServices = false;
 
     for (Bookings venuesBooked : bookings) {
       if (venuesBooked.getBookingReference().equals(bookingReference)) {
@@ -316,10 +318,13 @@ public class VenueHireSystem {
         venueName = venuesBooked.getVenueName();
         numberOfGuest = "" + venuesBooked.getNumberAttends();
         for (Services services : venuesBooked.getServices()) {
-          if (services instanceof Catering) {
+          if (services instanceof Catering && !venuesBooked.getServices().isEmpty()) {
             Catering catering = (Catering) services;
             cateringFee = catering.getCateringType().getCostPerPerson();
             catertingType = catering.getCateringType().getName();
+          } else {
+            noServices = true;
+            break;
           }
         }
       }
@@ -337,9 +342,16 @@ public class VenueHireSystem {
         }
       }
       MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(venueHireFee);
-      cateringFee = cateringFee * Integer.parseInt(numberOfGuest);
-      MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(catertingType, "" + cateringFee);
-      MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage("" + floralFee);
+      if (!noServices) {
+        cateringFee = cateringFee * Integer.parseInt(numberOfGuest);
+        totalCost = cateringFee + floralFee + Integer.parseInt(venueHireFee);
+        MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(catertingType, "" + cateringFee);
+        MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage("" + floralFee);
+        MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
+      } else {
+        totalCost = Integer.parseInt(venueHireFee);
+        MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
+      }
 
       // MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralFee);
       // MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(totalFee);
