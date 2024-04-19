@@ -302,6 +302,7 @@ public class VenueHireSystem {
         return;
       }
     }
+    MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Floral", bookingReference);
   }
 
   public void viewInvoice(String bookingReference) {
