@@ -322,14 +322,10 @@ public class VenueHireSystem {
     String venueHireFee = null;
     String catertingType = null;
     String floralType = null;
-    String musicType = null;
     int musicFee = 500;
     int cateringFee = 0;
     int floralFee = 0;
-    int indexFound;
     int totalCost;
-    boolean noServices = false;
-
     for (Bookings venuesBooked : bookings) {
       if (venuesBooked.getBookingReference().equals(bookingReference)) {
         customerEmail = venuesBooked.getEmail();
@@ -342,17 +338,13 @@ public class VenueHireSystem {
             Catering catering = (Catering) services;
             cateringFee = catering.getCateringType().getCostPerPerson();
             catertingType = catering.getCateringType().getName();
-            noServices = false;
           } else if (services instanceof Floral) {
             Floral floral = (Floral) services;
             floralFee = floral.getFloralType().getCost();
             floralType = floral.getFloralType().getName();
-            noServices = false;
           } else if (services.getItemType().equals("Music")) {
-            musicType = "Music";
             musicFee = 500;
           } else {
-            noServices = true;
           }
         }
       }
