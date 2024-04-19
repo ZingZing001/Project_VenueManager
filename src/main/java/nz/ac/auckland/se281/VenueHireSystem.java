@@ -274,22 +274,18 @@ public class VenueHireSystem {
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
-    Catering catering = new Catering(bookingReference, cateringType);
-    if (bookings.isEmpty()) {
-      MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(
-          catering.getItemType(), bookingReference);
-    }
-    for (Bookings venuesBooked : bookings) {
-      if (venuesBooked.getBookingReference().equals(bookingReference)) {
-        services.add(catering);
+
+    for (Bookings booking : bookings) {
+      if (booking.getBookingReference().equals(bookingReference)) {
+        Catering catering = new Catering(bookingReference, cateringType);
+        booking.addService(catering);
         MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
             catering.getItemType() + " (" + catering.getCateringType().getName() + ")",
             bookingReference);
-      } else {
-        MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage(
-            catering.getItemType(), bookingReference);
+        return;
       }
     }
+    MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Catering", bookingReference);
   }
 
   public void addServiceMusic(String bookingReference) {

@@ -1,5 +1,8 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bookings {
   private String venueName;
   private String currentDate;
@@ -8,6 +11,9 @@ public class Bookings {
   private String venueCode;
   private String referenceId;
   private String systemDate;
+  private List<Services> services = new ArrayList<>();
+
+  // existing constructor and methods
 
   public Bookings(
       String venueName,
@@ -53,5 +59,13 @@ public class Bookings {
 
   public String getBookingReference() {
     return referenceId;
+  }
+
+  public void addService(Services service) {
+    services.add(service);
+  }
+
+  public List<Services> getServices() {
+    return services;
   }
 }
