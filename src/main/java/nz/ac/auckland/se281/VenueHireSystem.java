@@ -361,8 +361,15 @@ public class VenueHireSystem {
         if (!allbookedVenus.getServices().isEmpty()) {
           cateringFee = cateringFee * Integer.parseInt(numberOfGuest);
           totalCost = cateringFee + floralFee + Integer.parseInt(venueHireFee);
-          MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(catertingType, "" + cateringFee);
-          MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage("" + floralFee);
+          for (Services services : allbookedVenus.getServices()) {
+            if (services instanceof Catering) {
+              MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(
+                  catertingType, "" + cateringFee);
+            } else if (services instanceof Floral) {
+              MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(floralType, "" + floralFee);
+            }
+          }
+
           MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage("" + totalCost);
         } else {
           totalCost = Integer.parseInt(venueHireFee);
