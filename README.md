@@ -34,13 +34,16 @@ To get a local copy up and running, follow these steps:
    ```sh
    cd Project_VenueManager
    
-3. **Compile the project**
-    ```sh
-   javac -d bin src/*.java
+3. Run the program:
+  For Mac:
+  ```
+  ./mvnw clean javafx:run
+  ```
+  For Windows:
+  ```
+  .\mvnw.cmd clean javafx:run
+  ```
 
-4. **Run the application**
-    ```sh
-   java -cp bin VenueManager
   
 ## Usage
 Once the application is running, you can interact with it via the terminal interface. Follow the prompts to manage venues, bookings, and services.
